@@ -21,17 +21,6 @@ calendars = [
 def get_calendar(cal_num):
     return jsonify({'calendar%d' % cal_num: calendars[cal_num - 1]})
 
-@app.route('/api/<int:cal_num>/dateRange', method=['POST'])
-def date_range(cal_num)
-    return_list = list()
-    for entry in calendars[cal_num - 1]:
-    dt = date(entry['Date'])
-    start_dt = date(request.json['Start'])
-    end_dt = date(request.json['End'])
-    if dt >= start_dt and dt <= end_dt:
-        return_list.append(entry)
-    return jsonify(return_list)
-
 @app.route('/api/<int:cal_num>/createCalendarEntry', methods=['POST'])
 def create_calendar_entry(cal_num):
     if not request.json or not 'Description' in request.json:
