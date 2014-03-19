@@ -1,3 +1,4 @@
+#Student: Stephen Stokes D12124062
 
 #Function to get a calendar / dictonary entry
 curl -i  http://127.0.0.1:5000/api/1/getCalendar
@@ -19,3 +20,23 @@ Date: Wed, 19 Mar 2014 23:24:45 GMT
     }
   ]
 }
+
+#Function to create an empty calendar
+curl -i -H "Content-Type: application/json" -X POST -d '' http://agile-forest-7589.herokuapp.com/api/createCalendar
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Date: Wed, 19 Mar 2014 23:52:20 GMT
+Server: gunicorn/18.0
+Content-Length: 26
+Connection: keep-alive
+
+Your calendar number is 4
+
+#Function 
+
+
+
+
+
+
+
