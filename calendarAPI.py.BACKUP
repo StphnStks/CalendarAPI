@@ -1,0 +1,49 @@
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+calendars = [
+    {
+	'Entry': 1,
+        'Date': 110314,
+	'Description': 'Paddys Wknd',
+	'Start Date': 140314,
+	'Finish Date': 170314
+    }
+] 
+
+@app.route('/api/getCalendar', methods=['GET'])
+def get_Calendar():
+    return jsonify({'calendars': calendars})
+
+
+
+@app.route('/api/createCalendarEntry', methods=['POST'])
+def create_Calendar_Entry():
+    if not request.json or not 'Description' in request.json:
+        abort(400)
+    entry = {
+	'Entry': calendars[-1]['Entry']+1,
+	'Date': calendars[-1]['Date'] +1,
+	'Description': request.json['Description'],
+	'Start Date': request.json.get('Start Date', ""),
+	'Finish Date': request.json.get('Finish Date',"")
+    }
+    calendars.append(entry)
+    return jsonify({'entry': entry}),201
+
+
+
+@app.route('/api/modifyCalendar/<int:Entry_Num>', methods=['PUT'])
+def modify_Calendar(Entry_Num):
+    entry = filter(lambda t: t['entry'] == Entry_Num, calendars)
+    entry[0]['Description'] = request.json.get('Description', entry[0]['Description'])
+    entry[0]['Start Date'] = request.json.get('Start Date', entry[0]['Start Date'])
+    entry[0]['Finish Date'] = request.json.get('Finish Date', entry[0]['Finish Date'])
+    return jsonify({ 'entry': entry[0] })
+
+
+
+if __name__ == '__main__':
+    app.run(debug = True)
+
