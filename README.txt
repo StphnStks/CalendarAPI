@@ -1,5 +1,6 @@
 #Student: Stephen Stokes D12124062
 #API call Heroku URL: http://agile-forest-7589.herokuapp.com/api/1/getCalendar 
+#GIT Repo: https://github.com/StphnStks/CalendarAPI
 
 #Function to get a calendar / dictonary entry
 curl -i http://agile-forest-7589.herokuapp.com/api/1/getCalendar
